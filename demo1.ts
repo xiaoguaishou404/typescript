@@ -8,10 +8,33 @@ type name = string;
 interface User {
     name: string;
     age?: number;
+    [propname: string]: any;
+    say?: (name: string) => void;
+
+}
+interface People extends User {
+    eat(): string;
+}
+const people: People = {
+    name: "sls",
+    age: 18,
+    eat: () => {
+        return "eat";
+    }
+}
+class user4 implements User {
+    name: string = "sls";
+    age: number;
+    say(name: string) {
+        console.log(name);
+    }
 }
 const user: User = {
     name: "sls",
-    age: 18
+    age: 18,
+    say: (name: string) => {
+        console.log(name);
+    }
 }
 // 对象类型
 const user2: {
@@ -100,5 +123,26 @@ add2({ one: 1, two: 2 });
 const arr: (number | string)[] = [1, 2, "hello"];
 
 // 元组,数组项的类型被指定，项顺序不能乱
-const arr2: [number, string,string] = [1, "hello", "world"];
+const arr2: [number, string, string] = [1, "hello", "world"];
+
+
+class Lady{
+    protected name: string = "sls";
+    private age: number = 18;
+    content: string="hi,帅哥";
+    sayHello(){
+        return this.content;
+    }
+}
+class xiaojiejie extends Lady{
+    sayHello(){
+        return super.sayHello()+"你真帅";
+    }
+    sayLove(){
+        return "I love you "+ this.name;
+    }
+}
+const goddess = new xiaojiejie();
+console.log(goddess.sayHello());
+console.log(goddess.sayLove());
 
