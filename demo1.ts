@@ -24,7 +24,7 @@ const people: People = {
 }
 class user4 implements User {
     name: string = "sls";
-    age: number;
+    age: number= 18;
     say(name: string) {
         console.log(name);
     }
