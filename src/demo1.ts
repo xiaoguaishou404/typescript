@@ -9,7 +9,11 @@ interface User {
     name: string;
     age?: number;
     [propname: string]: any;
+    // 使用函数类型的语法
     say?: (name: string) => void;
+    // 使用普通函数的语法
+    // say?(name: string): void;
+
 
 }
 interface People extends User {
@@ -24,7 +28,7 @@ const people: People = {
 }
 class user4 implements User {
     name: string = "sls";
-    age: number= 18;
+    age: number = 18;
     say(name: string) {
         console.log(name);
     }
@@ -126,20 +130,20 @@ const arr: (number | string)[] = [1, 2, "hello"];
 const arr2: [number, string, string] = [1, "hello", "world"];
 
 
-class Lady{
+class Lady {
     protected name: string = "sls";
     private age: number = 18;
-    content: string="hi,帅哥";
-    sayHello(){
+    content: string = "hi,帅哥";
+    sayHello() {
         return this.content;
     }
 }
-class xiaojiejie extends Lady{
-    sayHello(){
-        return super.sayHello()+"你真帅";
+class xiaojiejie extends Lady {
+    sayHello() {
+        return super.sayHello() + "你真帅";
     }
-    sayLove(){
-        return "I love you "+ this.name;
+    sayLove() {
+        return "I love you " + this.name;
     }
 }
 const goddess = new xiaojiejie();
