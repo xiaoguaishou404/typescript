@@ -112,6 +112,34 @@ function join2<T, P>(first: T, second: P) {
 console.log(join2<string, number>("sls", 6));
 // 类型推断，能写尽量写类型
 console.log(join2("sls", 6));
+// 泛型的继承
+interface Girl2 {
+    name: string
+}
+class SelectGirl<T extends Girl2>{
+    constructor(private girls: T[]) { }
+    getGirl(index: number): string {
+        return this.girls[index].name
+    }
+}
+const selectGirl = new SelectGirl<Girl2>([{ name: "sls" }, { name: "sls" }]);
+console.log(selectGirl.getGirl(0));
+// 泛型的约束,指定泛型只能是number | string，传入的时候所以必须是number | string
+class SelectGirl2<T extends number | string>{
+    constructor(private girls: T[]) { }
+    getGirl(index: number): T {
+        return this.girls[index]
+    }
+}
+const selectGirl2 = new SelectGirl2(["sls1", "sls2"]);
+const selectGirl3 = new SelectGirl2<number>([100, 200]);
+// const selectGirl3 = new SelectGirl2<boolean>([100, 200]);  //这样不行
+console.log(selectGirl2.getGirl(0));
+console.log(selectGirl3.getGirl(0));
+
+
+
+
 
 
 
